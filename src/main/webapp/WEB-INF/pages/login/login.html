@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script type="text/javascript" src="resources/jquery-easyui-1.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="resources/jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="resources/jquery-easyui-1.5.1/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="resources/jquery-easyui-1.5.1/themes/icon.css"/>
+    <link rel="stylesheet" href="resources/jquery-easyui-1.5.1/themes/default/easyui.css"/>
+</head>
+<body>
+<div class="easyui-dialog" title="login" style="width:400px;height:200px;display: flex;justify-content: center;align-items: center;"
+     data-options="iconCls:'icon-man',resizable:true,modal:true,
+buttons:[{
+				text:'Login',
+				handler:function(){
+				var name =$('#cc option:selected').val();
+	            $.post('/login',{name:name},function(data){
+	            if(data.code=='101'){
+	            location.href='/index';
+	            }
+	            },'json')
+				}
+			},{
+				text:'Close',
+				handler:function(){
+				alert(2);
+				}
+			}]">
+    <form id="ff" method="post">
+        <label>name:</label>
+        <select id="cc" class="easyui-combobox" name="name" style="width:150px;">
+            <option value="王中军">王中军</option>
+            <option value="冯小刚的经纪人">冯小刚的经纪人</option>
+            <option value="范冰冰的经纪人">范冰冰的经纪人</option>
+            <option value="冯小刚">冯小刚</option>
+            <option value="范冰冰">范冰冰</option>
+        </select>
+    </form>
+</div>
+</body>
+</html>
