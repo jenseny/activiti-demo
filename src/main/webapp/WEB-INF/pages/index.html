@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,15 +11,44 @@
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north',title:'',split:true" style="height:100px;">
-<div style="position: absolute;right: 100px;bottom: 0px;">
-    <span th:text="${session.user}"></span>
+    <div style="margin-left: 30px;"><h1>请假流程审批系统</h1></div>
+    <div style="position: absolute;right: 100px;bottom: 0px;">
+
+        <span th:text="${session.user}"></span>
+    </div>
 </div>
-</div>
-<div data-options="region:'south',title:'',split:true" style="height:100px;"></div>
 <div data-options="region:'east',title:'',split:true" style="width:200px;"></div>
 <div data-options="region:'west',title:'',split:true" style="width:200px;">
-
+    <ul class="easyui-tree">
+        <li>
+            <span>Folder</span>
+            <ul>
+                <li>
+                    <span>流程管理</span>
+                    <ul>
+                        <li><span><a onclick="addTab('部署管理','/toDeployment')">部署管理</a></span></li>
+                        <li><span><a onclick="addTab('任务管理','module/task.html')">任务管理</a></span></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
 </div>
-<div data-options="region:'center',title:''"></div>
+<div data-options="region:'center',title:''">
+    <div id="tab-panel" class="easyui-tabs" style="width:100%;height: 100%;"></div>
+</div>
 </body>
 </html>
+<script type="text/javascript">
+    function addTab(title,page) {
+        if($('#tab-panel').tabs('exists',title)){
+            $('#tab-panel').tabs('select',title)
+        }else{
+            $('#tab-panel').tabs('add', {
+                title: title,
+                href: page,
+                closable: true
+            });
+        }
+    }
+</script>

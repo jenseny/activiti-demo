@@ -1,0 +1,76 @@
+<div id="p" class="easyui-panel" title="部署信息管理列表"
+     style="width:100%;"
+     data-options="collapsible:true">
+    <table class="easyui-datagrid">
+        <thead>
+        <tr>
+            <th data-options="field:'code'">Code</th>
+            <th data-options="field:'name'">Name</th>
+            <th data-options="field:'price'">Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>001</td><td>name1</td><td>2323</td>
+        </tr>
+        <tr>
+            <td>002</td><td>name2</td><td>4612</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div id="p" class="easyui-panel" title="流程定义信息管理列表"
+     style="width:100%;"
+     data-options="collapsible:true">
+<table class="easyui-datagrid">
+    <thead>
+    <tr>
+        <th data-options="field:'code'">Code</th>
+        <th data-options="field:'name'">Name</th>
+        <th data-options="field:'price'">Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>001</td><td>name1</td><td>2323</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    </tbody>
+</table>
+    </div>
+
+<div id="p" class="easyui-panel" title="部署流程定义"
+     style="width:100%;"
+     data-options="collapsible:true">
+    <form id="deployment-form" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="name">流程名称：</label>
+            <input class="easyui-textbox" type="text" name="name"/>
+        </div>
+        <div>
+            <label for="file">流程文件：</label>
+            <input class="easyui-filebox" name="file" data-options="buttonText:'选择文件'" />
+        </div>
+        <a onclick="uploadProcess()" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'">上传流程</a>
+    </form>
+    </div>
+<script type="text/javascript">
+    //上传流程文件
+    function uploadProcess(){
+        $('#deployment-form').form('submit', {
+            url:"/deployment",
+            success:function(data){
+                var data = $.parseJSON(data);
+                if(data.code == "101"){
+                    $.messager.alert('提示','上传流程文件成功!','info');
+                }else{
+                    $.messager.alert('提示','上传流程文件失败!','error');
+                }
+            }
+        });
+    }
+</script>
